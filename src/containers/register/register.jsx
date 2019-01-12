@@ -25,7 +25,7 @@ export default class Register extends Component {
             username: '',
             password1: '',
             password2: '',
-            userType: 'Boss'
+            type: 'Boss'
         }
     }
 
@@ -44,7 +44,7 @@ export default class Register extends Component {
     }
 
     render() {
-        const {userType} = this.state;
+        const {type} = this.state;
         return (
             < div>
                 <Logo/>
@@ -63,12 +63,12 @@ export default class Register extends Component {
                         }}>Confirm</InputItem>
                         <WhiteSpace/>
                         <ListItem>
-                            <span>User Type</span>&nbsp;  &nbsp;<Radio checked={userType === "Boss"} onChange={() => {
+                            <span>User Type</span>&nbsp;  &nbsp;<Radio checked={type === "Boss"} onChange={() => {
                             this.handlerChange('userType', 'Boss')
                         }}>Boss</Radio>
                             &nbsp;  &nbsp;
-                            <Radio checked={userType === "Applicant"} onChange={() => {
-                                this.handlerChange('userType', 'Applicant')
+                            <Radio checked={type === "Applicant"} onChange={() => {
+                                this.handlerChange('type', 'Applicant')
                             }}>Applicant</Radio>
                         </ListItem>
                         <WhiteSpace/>
