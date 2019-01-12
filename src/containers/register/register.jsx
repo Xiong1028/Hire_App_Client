@@ -64,7 +64,7 @@ export default class Register extends Component {
                         <WhiteSpace/>
                         <ListItem>
                             <span>User Type</span>&nbsp;  &nbsp;<Radio checked={type === "Boss"} onChange={() => {
-                            this.handlerChange('userType', 'Boss')
+                            this.handlerChange('type', 'Boss')
                         }}>Boss</Radio>
                             &nbsp;  &nbsp;
                             <Radio checked={type === "Applicant"} onChange={() => {
