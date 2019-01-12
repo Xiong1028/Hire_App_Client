@@ -5,6 +5,8 @@
   "dependencies": {
     "antd-mobile": "^2.2.8",
     "bootstrap": "^4.2.1",
+    "jquery": "^1.12.4",
+    "popper.js": "^1.14.6",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
