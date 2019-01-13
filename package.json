@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd-mobile": "^2.2.8",
+    "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "jquery": "^1.12.4",
     "popper.js": "^1.14.6",
@@ -34,5 +35,6 @@
   ],
   "devDependencies": {
     "redux-devtools-extension": "^2.13.7"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }

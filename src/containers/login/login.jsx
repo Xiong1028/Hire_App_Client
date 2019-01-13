@@ -12,6 +12,7 @@ import {
 } from 'antd-mobile';
 import Logo from '../../components/Logo/logo';
 import 'antd-mobile/dist/antd-mobile.css';
+import "./login.css";
 
 const ListItem = List.Item;
 
@@ -40,7 +41,7 @@ export default class Register extends Component {
   }
 
   render() {
-    const {userType} = this.state;
+    const {type} = this.state;
     return (
       < div>
         <Logo/>
@@ -51,9 +52,9 @@ export default class Register extends Component {
             <InputItem type="password" onChange={val => {this.handlerChange('password', val)}}>Password</InputItem>
             <WhiteSpace/>
             <WhiteSpace/>
-            <Button type='primary' onClick={this.login}>Sign In</Button>
+            <Button className='btn' type='primary' onClick={this.login}>Sign In</Button>
             <WhiteSpace/>
-            <Button onClick={this.toRegister}>Sign Up</Button>
+            <Button className='btn' onClick={this.toRegister}>Sign Up</Button>
           </List>
         </WingBlank>
       </div>
