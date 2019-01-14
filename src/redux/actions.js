@@ -54,17 +54,26 @@ export const registerAction = (user) => {
 }
 
 export const loginAction = (user) => {
-    const {username, password, password2, type} = user;
+    const {username, password} = user;
 
-
-    //发送异步请求，在发送之前可进行数据的校验
-    return async dispatch => {
-        const response = await reqLogin(user);
-        const result = response.data;
-        if (result.code) {
-            dispatch(authSuccess(result.data))
-        } else {
-            dispatch(errMsg(result.msg))
+    //发送异步的action之前要进行表单验证
+    if (!username) {
+        return errMsg("username can not be empty");
+    } else if (!password) {
+        return errMsg("password can not be empty");
+    } else {
+        //发送异步请求，在发送之前可进行数据的校验
+        return async dispatch => {
+            //await to server
+            const response = await reqLogin(user);
+            //get data from server
+            const result = response.data;
+            if (result.code) {
+                //dispatch to reducer
+                dispatch(authSuccess(result.data))
+            } else {
+                dispatch(errMsg(result.msg))
+            }
         }
     }
 }

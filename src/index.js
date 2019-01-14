@@ -9,6 +9,7 @@ import {store} from './redux/store.js';
 
 ReactDOM.render(
   <Provider store={store}>
+      {/*HashRouter只在最外层用一次，子路由不需要用上*/}
     <HashRouter>
       {/*each time it will run one route by using switch*/}
       <Switch>

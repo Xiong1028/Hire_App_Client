@@ -13,11 +13,14 @@ import {
 import Logo from '../../components/Logo/logo';
 import 'antd-mobile/dist/antd-mobile.css';
 import "./login.css";
+import {connect} from 'react-redux';
+import {Redirect} from "react-router-dom";
+import {loginAction} from "../../redux/actions";
 
 const ListItem = List.Item;
 
 
-export default class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +30,7 @@ export default class Register extends Component {
   }
 
   login = () => {
-    console.log(this.state);
+    this.props.loginAction(this.state);
   }
 
   //refresh the state, Note: properName is variable by using[name]
@@ -42,11 +45,17 @@ export default class Register extends Component {
 
   render() {
     const {type} = this.state;
+    const {msg,redirectTo} = this.props.user;
+    //如果redirectTo有值，需要重定向到指定的路由上去
+    if(redirectTo){
+      return <Redirect to={redirectTo}/>
+    }
     return (
       < div>
         <Logo/>
         <WingBlank>
           <List>
+            {msg ? <div className='error-msg'>{msg}</div> : null}
             <InputItem  onChange={val => {this.handlerChange('username', val)}}>Username </InputItem>
             <WhiteSpace/>
             <InputItem type="password" onChange={val => {this.handlerChange('password', val)}}>Password</InputItem>
@@ -61,3 +70,10 @@ export default class Register extends Component {
     )
   }
 }
+
+export default connect(
+    (state)=>({
+      user:state.user,
+    }),
+    {loginAction}
+)(Login)
