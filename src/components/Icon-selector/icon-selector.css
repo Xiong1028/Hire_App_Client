@@ -1,0 +1,9 @@
+.icon_title{
+    height:30px;
+    line-height:30px;
+    overflow: hidden;
+}
+.icon_title img{
+    height:30px;
+    width:30px;
+}
