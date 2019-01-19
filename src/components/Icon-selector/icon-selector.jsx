@@ -44,7 +44,7 @@ export default class IconSelector extends Component {
     render() {
         const listHeader = !this.state.icon?'Please choose your icon':(
             <div className='icon_title'>
-                You've already choosen:<img src={this.state.icon} />
+                You've already choosen:<img src={this.state.icon} alt=''/>
             </div>
         );
         return (

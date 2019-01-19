@@ -94,7 +94,7 @@ class Register extends Component {
                             </Radio>
                         </ListItem>
                         <WhiteSpace/>
-                        <Button className='btn' type='primary' onClick={this.register.bind(this)}>
+                        <Button className='btn' type='primary' onClick={this.register}>
                             Sign Up
                         </Button>
                         <WhiteSpace/>
