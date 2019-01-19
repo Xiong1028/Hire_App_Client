@@ -77,3 +77,7 @@ export const loginAction = (user) => {
         }
     }
 }
+
+export const saveBossInfoAction = (user)=>{
+
+}
