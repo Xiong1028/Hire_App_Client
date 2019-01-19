@@ -4,7 +4,7 @@
  * Date: Jan 14
 */
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import IconSelector from "../../components/Icon-selector/icon-selector";
 import {
@@ -16,7 +16,7 @@ import {
 
 // import {Button} from "react-bootstrap";
 
-class BossInfo extends Component {
+class BossInfo extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
