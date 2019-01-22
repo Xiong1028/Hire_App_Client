@@ -11,10 +11,10 @@ const defaultUser = {
 }
 
 const user = (state = defaultUser, action) => {
+
     switch (action.type) {
         case AUTH_SUCCESS:
-            const {type, icon} = action.data;
-            //将原state解构出来，然后再将action.data解构出来，同属性覆盖,再添加重定向属性
+            //const {type, icon} = action.data;//将原state解构出来，然后再将action.data解构出来，同属性覆盖,再添加重定向属性
             return {
                 ...action.data,
                 redirectTo: getRedirect(type, icon)
@@ -25,9 +25,12 @@ const user = (state = defaultUser, action) => {
                 msg: action.data
             };
         case RECERIVE_USER:
-            return action.data;
+            return {
+                ...action.data,
+                redirectTo: getRedirect(type, icon)
+            }
         case RESET_USER:
-            return {...defaultUser,msg:action.data};
+            return {...defaultUser, msg: action.data};
 
         default:
             return state;

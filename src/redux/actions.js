@@ -79,7 +79,8 @@ export const loginAction = (user) => {
             const response = await reqLogin(user);
             //get data from server
             const result = response.data;
-            if (result.code) {
+            console.log(result);
+            if (!result.code) {
                 //dispatch to reducer
                 dispatch(authSuccess(result.data))
             } else {
@@ -94,7 +95,8 @@ export const updateUserAction = (user)=>{
     return async (dispatch)=>{
         const response = await reqUpdateUser(user);
         const result =response.data;
-        if(result.code ===0){
+        console.log(result);
+        if(!result.code){
             dispatch(reveiveUser(result.data));
         }else{
             dispatch(resetUser(result.msg));

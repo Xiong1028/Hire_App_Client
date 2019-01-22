@@ -34,11 +34,12 @@ class Login extends Component {
   }
 
   //refresh the state, Note: properName is variable by using[name]
-  handlerChange = (name, val) => {
+  handleChange = (name, val) => {
     this.setState({
       [name]: val
     })
   }
+
   toRegister = ()=>{
     this.props.history.replace('/register')
   }
@@ -56,9 +57,9 @@ class Login extends Component {
         <WingBlank>
           <List>
             {msg ? <div className='error-msg'>{msg}</div> : null}
-            <InputItem  onChange={val => {this.handlerChange('username', val)}}>Username </InputItem>
+            <InputItem  onChange={val => {this.handleChange('username', val)}}>Username </InputItem>
             <WhiteSpace/>
-            <InputItem type="password" onChange={val => {this.handlerChange('password', val)}}>Password</InputItem>
+            <InputItem type="password" onChange={val => {this.handleChange('password', val)}}>Password</InputItem>
             <WhiteSpace/>
             <WhiteSpace/>
             <Button className='btn' type='primary' onClick={this.login}>Sign In</Button>
