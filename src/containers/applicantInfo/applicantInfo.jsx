@@ -13,6 +13,8 @@ import {
     TextareaItem,
     Button
 } from "antd-mobile";
+import {Redirect} from 'react-router-dom';
+import {updateUserAction} from '../../redux/actions';
 
 class ApplicantInfo extends PureComponent {
     constructor(props) {
@@ -38,7 +40,7 @@ class ApplicantInfo extends PureComponent {
     }
 
     save = () => {
-        console.log(this.state);
+        this.props.updateUserAction(this.state);
     }
 
 
@@ -63,6 +65,6 @@ class ApplicantInfo extends PureComponent {
 }
 
 export default connect(
-    (state) => ({}),
-    {}
+    (state) => ({user:state.user}),
+    {updateUserAction}
 )(ApplicantInfo);

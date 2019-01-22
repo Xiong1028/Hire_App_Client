@@ -1,3 +1,6 @@
+/*
+*   包含多个工具函数
+* */
 
 /**
  *    if(user.type && user.header) => which route should be used?
@@ -13,7 +16,7 @@
 
 export const getRedirect = (type, icon) => {
     let path = '';
-    if (type === "boss") {
+    if (type === "Boss") {
         icon ? path = '/boss' : path = '/bossinfo';
     } else {
         icon ? path = '/applicant' : path = '/applicantinfo';

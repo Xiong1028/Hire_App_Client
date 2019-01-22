@@ -5,10 +5,11 @@
 */
 import {
     reqRegister,
-    reqLogin
+    reqLogin,
+    reqUpdateUser
 } from '../api';
 
-import {AUTH_SUCCESS, ERROR_MSG} from "./action-types";
+import {AUTH_SUCCESS, ERROR_MSG, RECERIVE_USER} from "./action-types";
 
 
 const authSuccess = (user) => ({
@@ -19,6 +20,18 @@ const authSuccess = (user) => ({
 const errMsg = (msg) => ({
     type: ERROR_MSG,
     data: msg
+})
+
+//接收用户的同步action
+const reveiveUser = (user)=>({
+    type:RECERIVE_USER,
+    data:user
+})
+
+//重置用户的同步action
+const resetUser = (msg)=>({
+    type:ERROR_MSG,
+    data:msg
 })
 
 
@@ -40,8 +53,6 @@ export const registerAction = (user) => {
             //异步获取返回ajax请求返回数据
             const response = await reqRegister({username, password, type});
             const result = response.data;
-
-            console.log(result);
 
             // 将返回数据dispatch到store -> reducer
             if (!result.code) {
@@ -78,6 +89,15 @@ export const loginAction = (user) => {
     }
 }
 
-export const saveBossInfoAction = (user)=>{
-
+//update User
+export const updateUserAction = (user)=>{
+    return async (dispatch)=>{
+        const response = await reqUpdateUser(user);
+        const result =response.data;
+        if(result.code ===0){
+            dispatch(reveiveUser(result.data));
+        }else{
+            dispatch(resetUser(result.msg));
+        }
+    }
 }

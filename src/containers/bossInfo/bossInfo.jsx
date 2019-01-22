@@ -14,6 +14,9 @@ import {
     Button
 } from "antd-mobile";
 
+import {updateUserAction} from '../../redux/actions'; 
+import{Redirect} from 'react-router-dom';
+
 // import {Button} from "react-bootstrap";
 
 class BossInfo extends PureComponent {
@@ -41,10 +44,16 @@ class BossInfo extends PureComponent {
     }
 
     save = () => {
-        console.log(this.state);
+        this.props.updateUserAction(this.state);
     }
 
     render() {
+        const {icon,type} = this.props.user;
+        if(icon){
+            const path= type==="Boss"?'/boss':'/bossInfo';
+            return <Redirect to={path}/>
+        }
+
         return (
             <div>
                 <NavBar>Boss Information</NavBar>
@@ -72,6 +81,6 @@ class BossInfo extends PureComponent {
 }
 
 export default connect(
-    (state) => ({}),
-    {}
+    (state) => ({user:state.user}),
+    {updateUserAction}
 )(BossInfo);
