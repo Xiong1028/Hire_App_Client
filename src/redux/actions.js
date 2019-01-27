@@ -6,10 +6,17 @@
 import {
     reqRegister,
     reqLogin,
-    reqUpdateUser
+    reqUpdateUser,
+    reqUser,
+    reqUserList
 } from '../api';
 
-import {AUTH_SUCCESS, ERROR_MSG, RECERIVE_USER} from "./action-types";
+import {
+    AUTH_SUCCESS,
+    ERROR_MSG,
+    RECEIVE_USER,
+    GET_USERS_LIST
+} from "./action-types";
 
 
 const authSuccess = (user) => ({
@@ -23,15 +30,21 @@ const errMsg = (msg) => ({
 })
 
 //接收用户的同步action
-const reveiveUser = (user)=>({
-    type:RECERIVE_USER,
-    data:user
+const reveiveUser = (user) => ({
+    type: RECEIVE_USER,
+    data: user
 })
 
 //重置用户的同步action
-const resetUser = (msg)=>({
-    type:ERROR_MSG,
-    data:msg
+export const resetUser = (msg) => ({
+    type: ERROR_MSG,
+    data: msg
+})
+
+//getUsersList的同步action
+const getUserList = (userslist)=>({
+    type:GET_USERS_LIST,
+    data:userslist
 })
 
 
@@ -78,8 +91,8 @@ export const loginAction = (user) => {
             //await to server
             const response = await reqLogin(user);
             //get data from server
+            console.log(response)
             const result = response.data;
-            console.log(result);
             if (!result.code) {
                 //dispatch to reducer
                 dispatch(authSuccess(result.data))
@@ -91,15 +104,42 @@ export const loginAction = (user) => {
 }
 
 //update User
-export const updateUserAction = (user)=>{
-    return async (dispatch)=>{
+export const updateUserAction = (user) => {
+    return async (dispatch) => {
         const response = await reqUpdateUser(user);
-        const result =response.data;
-        console.log(result);
-        if(!result.code){
+        const result = response.data;
+        if (!result.code) {
             dispatch(reveiveUser(result.data));
-        }else{
+        } else {
             dispatch(resetUser(result.msg));
+        }
+    }
+}
+
+//get User
+export const getUserAction = () => {
+    return async (dispatch) => {
+        const response = await reqUser();
+        const result = response.data;
+        if (!result.code) {
+            dispatch(reveiveUser(result.data));
+        } else {
+            dispatch(resetUser(result.msg));
+        }
+    }
+}
+
+//get users List
+export const getUsersListAction = (type)=>{
+
+    return async(dispatch)=>{
+        //Step1： 发异步action,到后台获取数据
+        const response = await reqUserList(type);
+
+        //Step2:获取数据后，发同步action,更新reducer
+        const result = response.data;
+        if(!result.code){
+            dispatch(getUserList(result.data));
         }
     }
 }

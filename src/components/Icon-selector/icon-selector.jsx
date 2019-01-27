@@ -28,7 +28,7 @@ export default class IconSelector extends Component {
         for (let i = 0; i < 16; i++) {
             this.headerList.push({
                 text: `icon_${i + 1}`,
-                icon: require(`./icons/icons_${i + 1}.gif`) //这里不能使用import
+                icon: require(`../../assets/icons/icon_${i + 1}.gif`) //这里不能使用import
             })
         }
         this.state = {

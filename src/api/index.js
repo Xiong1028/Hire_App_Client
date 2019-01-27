@@ -12,3 +12,9 @@ export const reqLogin = ({username, password}) => ajax('/login', {username, pass
 
 //update api
 export const reqUpdateUser = (user) => ajax('/update', user, 'POST');
+
+//getUser api
+export const reqUser = () =>ajax('/user');
+
+//get userslist
+export const reqUserList =(type)=>ajax('/userlist',{type});

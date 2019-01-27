@@ -13,7 +13,6 @@ import {
     TextareaItem,
     Button
 } from "antd-mobile";
-import {Redirect} from 'react-router-dom';
 import {updateUserAction} from '../../redux/actions';
 
 class ApplicantInfo extends PureComponent {
